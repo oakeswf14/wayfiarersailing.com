@@ -86,7 +86,6 @@ async function fetchWind() {
     const lines = text.trim().split("\n");
     
     const dataLines = lines[2].trim().split(/\s+/);
-    document.getElementById("wind-display").innerText = ${dataLines};
     const windDir = dataLine[5];
     const windSpeed = dataLine[6];
 
@@ -99,7 +98,7 @@ async function fetchWind() {
 }
 
 fetchWind();
-setInterval(fetchWind, 300000);
+setInterval(fetchWind, 100000);
       
 </script>
 
