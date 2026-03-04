@@ -78,7 +78,8 @@
 async function fetchWind() {
   try {
     //const proxy = "https://api.allorigins.win/raw?url=";
-    const url = encodeURIComponent("https://www.ndbc.noaa.gov/data/realtime2/CHII2.txt");
+    //const url = encodeURIComponent(proxy + "https://www.ndbc.noaa.gov/data/realtime2/CHII2.txt");
+    const url = "https://www.ndbc.noaa.gov/data/realtime2/CHII2.txt";
     const response = await fetch(url);
     const text = await response.text();
     
@@ -94,7 +95,7 @@ async function fetchWind() {
       `Wind: ${windSpeed} kt @ ${windDir}°`;
   } catch (err) {
     console.error(err);
-    document.getElementById("wind-display").innerText = "Wind data unavailable";
+    document.getElementById("wind-display").innerText = "Wind data unavailable1";
   }
 }
 
