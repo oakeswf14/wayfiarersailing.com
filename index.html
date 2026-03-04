@@ -84,18 +84,36 @@ async function fetchWind() {
     
     const lines = text.trim().split("\n");
 
-    const dataLines = lines.filter(line => !line.startsWith("#")).slice(2);
+    // Skip the first 2 header lines
+    const dataLines = lines.slice(2).filter(line => line.trim() !== "");
 
-    if (dataLines.length === 0) throw new Error("No data lines found");
+    // Find the last valid line with numeric wind data
+    const lastValidLine = [...dataLines].reverse().find(line => {
+      const parts = line.trim().split(/\s+/);
+      return parts[5] !== "MM" && parts[6] !== "MM";
+    });
+
+    if (!lastValidLine) {
+      document.getElementById("wind-text").innerText = "Wind data unavailable";
+      return;
+    }
+
+    const parts = lastValidLine.trim().split(/\s+/);
+    const windDir = parseFloat(parts[5]); // WDIR (deg)
+    const windSpeed = parts[6];           // WSPD (knots)
+    
+    //const dataLines = lines.filter(line => !line.startsWith("#")).slice(2);
+
+    //if (dataLines.length === 0) throw new Error("No data lines found");
 
     // Grab the last data line
-    const lastLine = dataLines[dataLines.length - 1].trim().split(/\s+/);
+    //const lastLine = dataLines[dataLines.length - 1].trim().split(/\s+/);
 
     // NDBC standard columns for “real-time”:
     // lastLine[7] = wind direction (deg)
     // lastLine[8] = wind speed (m/s or kt depending on station)
-    const windDir = lastLine[5];
-    const windSpeed = lastLine[6];
+    //const windDir = lastLine[5];
+    //const windSpeed = lastLine[6];
     
     //const lastLine = lines[lines.length - 1].split(/\s+/);
 
