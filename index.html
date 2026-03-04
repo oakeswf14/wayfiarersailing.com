@@ -86,14 +86,14 @@ async function fetchWind() {
     
     const dataLines = lines[2].trim().split(/\s+/);
     
-    const windDir = parseFloat(dataLine[5]);
+    const windDir = dataLine[5];
     const windSpeed = dataLine[6];
 
     document.getElementById("wind-display").innerText =
       `Wind: ${windSpeed} kt @ ${windDir}°`;
   } catch (err) {
     console.error(err);
-    document.getElementById("wind-display").innerText = "Wind data unavailable";
+    document.getElementById("wind-display").innerText = "Wind data unavailable1";
   }
 }
 
