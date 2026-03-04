@@ -24,10 +24,12 @@
           flex-shrink: 0;
         }
       #wind-display {
+        display: flex;
+        align: center;
+        margin-left: 10px;
         font-size: 0.9rem;
         color: #333;
         white-space: nowrap;
-        flex-shrink: 0;
       }
       body {
         margin:0;
@@ -64,7 +66,7 @@
   <body>
     <div class="topbar">
     <img src="images/wayfairer_logo1.png" class="logo" alt="Logo">
-        <div id="wind-display" style="margin-left:10px;">
+        <div id="wind-display">
           Loading wind...
         </div>
     </div>
