@@ -91,7 +91,7 @@ async function fetchWind() {
   })
 
     if (!firstValidLine) {
-      windTextEl.innerText = "Wind data unavailable";
+      document.getElementById("wind-display").innerText = "Wind data unavailable";
     } else {
       const parts = firstValidLine.trim().split(/\s+/);
       const windDir = parseFloat(parts[5]);
