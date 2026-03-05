@@ -99,9 +99,8 @@
       const lines = text.trim().split("\n");
 
       if (lines.length < 3) {
-        // Don't clear existing good data
         if (!hasValidWind) {
-          windDisplay.innerText = "Wind data unavailable1";
+          windDisplay.innerText = "Wind data unavailable";
         }
         return;
       }
@@ -116,7 +115,7 @@
 
       if (!firstValidLine) {
         if (!hasValidWind) {
-          windDisplay.innerText = "Wind data unavailable2";
+          windDisplay.innerText = "Wind data unavailable";
         }
         return;
       }
@@ -127,24 +126,22 @@
 
       if (isNaN(windDir) || windSpeed === "MM") {
         if (!hasValidWind) {
-          windDisplay.innerText = "Wind data unavailable3";
+          windDisplay.innerText = "Wind data unavailable";
         }
         return;
       }
 
-      // At this point we have good data
       hasValidWind = true;
       windDisplay.innerText = `Wind: ${windSpeed} kt @ ${windDir}°`;
     } catch (e) {
       console.error("Error fetching wind:", e);
-      // Only show "unavailable" if we never had valid data
       if (!hasValidWind) {
-        windDisplay.innerText = "Wind data unavailable full fail";
+        windDisplay.innerText = "Wind data unavailable";
       }
     }
   }
 
-  fetchWind();                  // initial load
+  fetchWind();              
   setInterval(fetchWind, 60000); // update every 60s 
 </script>
   </body>
